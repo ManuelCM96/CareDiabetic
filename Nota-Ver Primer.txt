@@ -1,0 +1,1 @@
+Para este proyecto se utiliza la tabla de clasificacion de pie diabetico de Meggit-Wagner

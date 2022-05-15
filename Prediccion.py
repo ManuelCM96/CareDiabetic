@@ -1,5 +1,6 @@
 import os
 import sys
+import random
 import numpy as np
 import cv2 as cv
 import tensorflow_hub as hub
@@ -15,8 +16,11 @@ from time import sleep
 import h5py
 from keras.preprocessing.image import load_img,img_to_array
 #cap=cv.VideoCapture(0)
+respuesta2=0
 longitud,altura=224,224
 modelo='modelo/modelo.h5'
+img=['Prueba.jpeg','Pie_bueno.jpeg','Pie_malo.jpg']
+img2=random.choice(img)
 #pesos_modelo='modelo/pesos.h5'
 #custom_object={'crf_loss':crf_loss,'crf_viterbi_accuracy':crf_viterbi_accuracy}
 modelo=load_model(modelo,custom_objects={'KerasLayer':hub.KerasLayer})
@@ -30,7 +34,7 @@ def predict(file):
     resultado=arreglo[0]
     print(resultado)
     respuesta=np.argmax(resultado)
-    print(respuesta)
+    respuesta2=respuesta
     if respuesta == 0:
         print('Dañado')
     elif respuesta == 1:
@@ -43,11 +47,11 @@ def predict(file):
     #    print("Foto tomada correctamente")
     #else:
     #    print("Error al acceder a la camara")
-image=cv.imread('Prueba.jpeg')
-image_resize=cv.resize(image,(300,200))
-window_name='Image'
-cv.imshow(window_name,image_resize) 
-predict('Prueba.jpeg')
-#cap.release()
-cv.waitKey(0)
-cv.destroyAllWindows()
+#image=cv.imread(img2)
+#image_resize=cv.resize(image,(300,200))
+#window_name='Image'
+#cv.imshow(window_name,image_resize) 
+#predict('Pie_bueno.jpeg')
+
+#cv.waitKey(0)
+#cv.destroyAllWindows()
